@@ -1,0 +1,35 @@
+Index: src/Camera.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/Camera.java b/src/Camera.java
+--- a/src/Camera.java	
++++ b/src/Camera.java	(date 1701044743752)
+@@ -88,11 +88,12 @@
+                 if (clicked) {
+                     name = JOptionPane.showInputDialog(this, "Enter image name");
+                     if (name == null) {
+-                        name = new SimpleDateFormat("yyyy-MM-dd-hh-s").format(new Date());
++                        name = new SimpleDateFormat("yyyy-mm-dd-hh-s").format(new Date());
+                     }
+                     Imgcodecs.imwrite("images/" + name + ".jpg", image);
+ 
+-                    ConvertImageTo("blackwhite");
++                    //ConvertImageTo("blackwhite");
++                    //ConvertImageTo("color");
+                     clicked = false;
+                 }
+             }
+@@ -114,6 +115,11 @@
+             Imgproc.cvtColor(source, source, Imgproc.COLOR_RGB2GRAY); //instead of second source I would replace with destination
+             Imgcodecs.imwrite("images/" + name + ".jpg", source); //swap name out if need be
+         }
++
++        if(type.equals("color")) {
++            Imgproc.cvtColor(source, source, Imgproc.COLOR_GRAY2RGB); //instead of second source I would replace with destination
++            Imgcodecs.imwrite("images/" + name + ".jpg", source); //swap name out if need be
++        }
+     }
+ 
+     public static void main(String[] args) {
